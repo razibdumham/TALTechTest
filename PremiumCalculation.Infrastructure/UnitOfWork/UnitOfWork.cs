@@ -10,6 +10,7 @@ namespace PremiumCalculation.Infrastructure.UnitOfWork
     {
         public PremiumCalculationDBContext _dbContext { get; set; }
         public OccupationRepository _occupationRepository { get; set; }
+        public RatingRepository _ratingRepository { get; set; }
 
         public UnitOfWork(PremiumCalculationDBContext dBContext)
         {
@@ -19,6 +20,11 @@ namespace PremiumCalculation.Infrastructure.UnitOfWork
         public IOccupationRepository OccupationRepository
         {
             get { return _occupationRepository = _occupationRepository ?? new OccupationRepository(_dbContext); }
+        }
+
+        public IRatingRepository RatingRepository
+        {
+            get { return _ratingRepository = _ratingRepository ?? new RatingRepository(_dbContext); }
         }
 
         public void Commit()

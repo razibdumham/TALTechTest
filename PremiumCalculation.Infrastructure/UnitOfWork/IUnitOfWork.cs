@@ -8,6 +8,8 @@ namespace PremiumCalculation.Infrastructure.UnitOfWork
         PremiumCalculationDBContext _dbContext { get; set; }
         OccupationRepository _occupationRepository { get; set; }
         IOccupationRepository OccupationRepository { get; }
+        RatingRepository _ratingRepository { get; set; }
+        IRatingRepository RatingRepository { get; }
 
         void Commit();
         Task CommitAsync();
