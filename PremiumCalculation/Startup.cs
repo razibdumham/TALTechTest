@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PremiumCalculation.Infrastructure;
+using PremiumCalculation.Infrastructure.Repository;
+using PremiumCalculation.Infrastructure.UnitOfWork;
+using PremiumCalculation.Service;
 
 namespace PremiumCalculation
 {
@@ -28,11 +31,19 @@ namespace PremiumCalculation
             });
 
             services.AddControllersWithViews();
+
+            // Adding the Unit of work to the DI container
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IRatingService, RatingService>();
+            services.AddTransient<ICalculationService, CalculationService>();
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

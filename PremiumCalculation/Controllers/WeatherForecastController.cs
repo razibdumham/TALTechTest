@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PremiumCalculation.Service;
+using PremiumCalculation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +19,21 @@ namespace PremiumCalculation.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IRatingService _ratingService;
+        private readonly ICalculationService _calculationService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IRatingService ratingService, ICalculationService calculationService)
         {
             _logger = logger;
+            _ratingService = ratingService;
+            _calculationService = calculationService;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<WeatherForecast>> Get()
         {
+            var ratings = await _ratingService.GetAll();
+
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -34,6 +42,13 @@ namespace PremiumCalculation.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost]
+        public async Task<decimal> Post(PremiumCalculatorModel model)
+        {
+            var premium = await _calculationService.CalculatePremium(model);
+            return premium;
         }
     }
 }

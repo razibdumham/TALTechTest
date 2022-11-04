@@ -1,12 +1,12 @@
 ﻿using PremiumCalculation.Domain;
+using PremiumCalculation.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PremiumCalculation.Service
 {
-    public interface IRatingService
+    public interface ICalculationService
     {
-        Task<IEnumerable<Rating>> GetAll();
-        Task<decimal> GetOccupationRatingFactorByRatingId(int id);
+        Task<decimal> CalculatePremium(PremiumCalculatorModel model);
     }
 }

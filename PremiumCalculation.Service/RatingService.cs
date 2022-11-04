@@ -20,5 +20,13 @@ namespace PremiumCalculation.Service
 
         public async Task<IEnumerable<Rating>> GetAll()
             => await _unitOfWork.RatingRepository.GetAllAsync();
+
+        public async Task<decimal> GetOccupationRatingFactorByRatingId(int id)
+        {
+            var rating = await _unitOfWork.RatingRepository.GetAsync(r => r.Id == id);
+
+            return rating?.Factor ?? 0;
+        }
+            
     }
 }
