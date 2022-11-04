@@ -14,6 +14,7 @@ namespace PremiumCalculation.Domain.ViewModel
         public DateTime DateOfBirth { get; set; }
         public string OccupationTitle { get; set; }
         public decimal SumInsured { get; set; }
+        public decimal CalculatedPremium { get; set; }
         public int RatingId { get; set; }
         public List<OccupationModel> Occupations { get; set; }
 }

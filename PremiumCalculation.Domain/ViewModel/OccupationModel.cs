@@ -9,6 +9,7 @@ namespace PremiumCalculation.Domain.ViewModel
         public int Id { get; set; }
         public string OccupationTitle { get; set; }
         public decimal Factor { get; set; }
+        public int RatingId { get; set; }
     }
     
 }

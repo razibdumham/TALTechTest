@@ -40,10 +40,10 @@ namespace PremiumCalculation.Controllers
         }
 
         [HttpPost]
-        public async Task<decimal> Post(PremiumCalculatorModel model)
+        public async Task<PremiumCalculatorModel> Post(PremiumCalculatorModel model)
         {
-            var premium = await _calculationService.CalculatePremium(model);
-            return premium;
+            model.CalculatedPremium = await _calculationService.CalculatePremium(model);
+            return model;
         }
     }
 }
