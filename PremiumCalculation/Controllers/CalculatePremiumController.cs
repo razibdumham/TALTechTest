@@ -33,7 +33,6 @@ namespace PremiumCalculation.Controllers
         public async Task<PremiumCalculatorModel> Get()
         {
             var model = new PremiumCalculatorModel();
-            model.Name = "Razib";
             model.Occupations = await _occupationService.GetAll();
 
             return model;
@@ -42,8 +41,17 @@ namespace PremiumCalculation.Controllers
         [HttpPost]
         public async Task<PremiumCalculatorModel> Post(PremiumCalculatorModel model)
         {
-            model.CalculatedPremium = await _calculationService.CalculatePremium(model);
+            //Test server side validation
+            //ModelState.AddModelError("Name", "Name is required");
+            if (ModelState.IsValid)
+            {
+                model.CalculatedPremium = await _calculationService.CalculatePremium(model);
+                return model;
+            }
+            model.Errors = ModelState.Keys.SelectMany(k => ModelState[k].Errors)
+                                .Select(m => m.ErrorMessage).ToList();
             return model;
+
         }
     }
 }

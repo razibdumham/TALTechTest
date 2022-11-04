@@ -33,19 +33,24 @@ export class CalculatePremiumComponent implements OnInit {
     //  name: new FormControl("Razib")
     //});
   }
-  onClickSubmit(event: any) {
-    //const formData = new FormData();
-    //formData.append('name', this.calculatorForm.get('name').value);
-    //formData.append('age', this.calculatorForm.get('age').value);
-    //formData.append('dateOfBirth', this.calculatorForm.get('dateOfBirth').value);
-    //formData.append('sumInsured', this.calculatorForm.get('sumInsured').value);
-    //formData.append('factor', this.calculatorForm.get('factor').value);
+  onOccupationChange(event: any) {
+    this.calculatePremium.name = this.calculatorForm.get('name').value||'';
+    this.calculatePremium.age = parseInt(this.calculatorForm.get('age').value || 0);
+    this.calculatePremium.dateOfBirth = this.calculatorForm.get('dateOfBirth').value || Date.now().toString();
+    this.calculatePremium.sumInsured = parseInt(this.calculatorForm.get('sumInsured').value || 0);
+    this.calculatePremium.ratingId = parseInt(event.target.value || 0);
 
-    this.calculatePremium.name = this.calculatorForm.get('name').value;
-    this.calculatePremium.age = this.calculatorForm.get('age').value;
-    this.calculatePremium.dateOfBirth = this.calculatorForm.get('dateOfBirth').value;
-    this.calculatePremium.sumInsured = this.calculatorForm.get('sumInsured').value;
-    this.calculatePremium.ratingId = event.target.value;
+    this.httpClient.post<any>(this.baseUrl + 'CalculatePremium', this.calculatePremium).subscribe(result => {
+      this.calculatePremium = result;
+      this.cdRf.detectChanges();
+    }, error => console.error(error));
+  }
+  onClickSubmit() {
+    this.calculatePremium.name = this.calculatorForm.get('name').value || '';
+    this.calculatePremium.age = parseInt(this.calculatorForm.get('age').value || 0);
+    this.calculatePremium.dateOfBirth = this.calculatorForm.get('dateOfBirth').value || Date.now().toString();
+    this.calculatePremium.sumInsured = parseInt(this.calculatorForm.get('sumInsured').value || 0);
+    this.calculatePremium.ratingId = parseInt(this.calculatorForm.get('ratingId').value || 0);
 
     this.httpClient.post<any>(this.baseUrl + 'CalculatePremium', this.calculatePremium).subscribe(result => {
       this.calculatePremium = result;
@@ -58,10 +63,10 @@ interface PremiumCalculatorModel {
   name: string;
   age: number;
   dateOfBirth: string;
-  occupationTitle: string;
   sumInsured: number;
   ratingId: number;
   factor: number;
   calculatedPremium: number;
   occupations: [];
+  errors: [];
 }

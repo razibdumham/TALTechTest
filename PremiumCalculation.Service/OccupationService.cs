@@ -22,16 +22,15 @@ namespace PremiumCalculation.Service
 
         public async Task<List<OccupationModel>> GetAll()
         {
-            var ratings = await _unitOfWork.RatingRepository.GetAllAsync();
             var occupations = await _unitOfWork.OccupationRepository.GetAllAsync();
 
-            var occupationModelList = this.PrepareOccupationModelList(occupations, ratings);
+            var occupationModelList = this.PrepareOccupationModelList(occupations);
 
             return occupationModelList;
         }
 
         //For this type of Mapping automapper library is used as standard practice
-        private List<OccupationModel> PrepareOccupationModelList(IEnumerable<Occupation> occupations, IEnumerable<Rating> ratings)
+        private List<OccupationModel> PrepareOccupationModelList(IEnumerable<Occupation> occupations)
         {
             var occupationModelList = new List<OccupationModel>();
             foreach (var occupation in occupations)
@@ -41,24 +40,13 @@ namespace PremiumCalculation.Service
                 occupationModel.Id = occupation.Id;
                 occupationModel.OccupationTitle = occupation.OccupationTitle;
                 occupationModel.RatingId = occupation.RatingId;
-                occupationModel.Factor =  this.GetFactorByRatingId(occupation.RatingId, ratings);
+                occupationModel.Factor = occupation.Rating.Factor;
                 occupationModelList.Add(occupationModel);
             }
             return occupationModelList;
         }
 
-        private decimal GetFactorByRatingId(int ratingId, IEnumerable<Rating> ratings)
-        {
-            var factor = ratings.Where(r => r.Id == ratingId).FirstOrDefault()?.Factor??0;
-            return factor;
-        }
-
-        //public async Task<decimal> GetOccupationRatingFactorByRatingId(int id, IEnumerable<Rating> ratings)
-        //{
-        //    var rating = await _unitOfWork.RatingRepository.GetAsync(r => r.Id == id);
-
-        //    return rating?.Factor ?? 0;
-        //}
+       
             
     }
 }
