@@ -19,13 +19,13 @@ namespace PremiumCalculation.Controllers
         };
 
         private readonly ILogger<CalculatePremiumController> _logger;
-        private readonly IRatingService _ratingService;
+        private readonly IOccupationService _occupationService;
         private readonly ICalculationService _calculationService;
 
-        public CalculatePremiumController(ILogger<CalculatePremiumController> logger, IRatingService ratingService, ICalculationService calculationService)
+        public CalculatePremiumController(ILogger<CalculatePremiumController> logger, IOccupationService occupationService, ICalculationService calculationService)
         {
             _logger = logger;
-            _ratingService = ratingService;
+            _occupationService = occupationService;
             _calculationService = calculationService;
         }
 
@@ -33,7 +33,8 @@ namespace PremiumCalculation.Controllers
         public async Task<PremiumCalculatorModel> Get()
         {
             var model = new PremiumCalculatorModel();
-            model.Ratings = await _ratingService.GetAll();
+            model.Name = "Razib";
+            model.Occupations = await _occupationService.GetAll();
 
             return model;
         }

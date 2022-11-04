@@ -36,6 +36,7 @@ namespace PremiumCalculation
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IRatingService, RatingService>();
             services.AddTransient<ICalculationService, CalculationService>();
+            services.AddTransient<IOccupationService, OccupationService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

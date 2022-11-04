@@ -7,7 +7,7 @@ namespace PremiumCalculation.Domain.ViewModel
     {
         public PremiumCalculatorModel()
         {
-            Ratings = new List<RatingModel>();
+            Occupations = new List<OccupationModel>();
         }
         public string Name { get; set; }
         public int Age { get; set; }
@@ -15,6 +15,6 @@ namespace PremiumCalculation.Domain.ViewModel
         public string OccupationTitle { get; set; }
         public decimal SumInsured { get; set; }
         public int RatingId { get; set; }
-        public List<RatingModel> Ratings { get; set; }
+        public List<OccupationModel> Occupations { get; set; }
 }
 }
