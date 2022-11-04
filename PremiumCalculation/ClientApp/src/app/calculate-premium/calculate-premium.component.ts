@@ -14,7 +14,7 @@ export class CalculatePremiumComponent implements OnInit {
     age: '',
     dateOfBirth: '',
     sumInsured: '',
-    factor:''
+    ratingId:''
   });
   public httpClient: HttpClient;
   public baseUrl: string;
