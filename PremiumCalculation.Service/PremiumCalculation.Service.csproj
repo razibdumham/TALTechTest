@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PremiumCalculation.Domain\PremiumCalculation.Domain.csproj" />
+    <ProjectReference Include="..\PremiumCalculation.Infrastructure\PremiumCalculation.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
