@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PremiumCalculation.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,8 @@ namespace PremiumCalculation.Infrastructure
         {
 
         }
+
+        public virtual DbSet<Occupation> Occupations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
