@@ -1,6 +1,7 @@
 ﻿using PremiumCalculation.Domain;
+using PremiumCalculation.Domain.ViewModel;
 using PremiumCalculation.Infrastructure.UnitOfWork;
-using PremiumCalculation.ViewModel;
+using PremiumCalculation.Domain.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;

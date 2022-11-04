@@ -11,18 +11,18 @@ namespace PremiumCalculation.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class CalculatePremiumController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<CalculatePremiumController> _logger;
         private readonly IRatingService _ratingService;
         private readonly ICalculationService _calculationService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IRatingService ratingService, ICalculationService calculationService)
+        public CalculatePremiumController(ILogger<CalculatePremiumController> logger, IRatingService ratingService, ICalculationService calculationService)
         {
             _logger = logger;
             _ratingService = ratingService;
@@ -30,20 +30,19 @@ namespace PremiumCalculation.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get()
+        public async Task<PremiumCalculatorModel> Get()
         {
-            var ratings = await _ratingService.GetAll();
+            var model = new PremiumCalculatorModel();
+            model.Ratings = await _ratingService.GetAll();
 
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return model;
         }
 
-       
+        [HttpPost]
+        public async Task<decimal> Post(PremiumCalculatorModel model)
+        {
+            var premium = await _calculationService.CalculatePremium(model);
+            return premium;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using PremiumCalculation.Domain;
+using PremiumCalculation.Domain.ViewModel;
 using PremiumCalculation.Infrastructure.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,30 @@ namespace PremiumCalculation.Service
 
 
 
-        public async Task<IEnumerable<Rating>> GetAll()
-            => await _unitOfWork.RatingRepository.GetAllAsync();
+        public async Task<List<RatingModel>> GetAll()
+        {
+            var ratings = await _unitOfWork.RatingRepository.GetAllAsync();
+
+            var ratingModelList = this.PrepareRatingModel(ratings);
+
+            return ratingModelList;
+        }
+
+        //For this type of Mapping automapper library is used as standard practice
+        private List<RatingModel> PrepareRatingModel(IEnumerable<Rating> ratings)
+        {
+            var ratingModelList = new List<RatingModel>();
+            foreach (var rating in ratings)
+            {
+                var ratingModel = new RatingModel();
+
+                ratingModel.Id = rating.Id;
+                ratingModel.RatingTitle = rating.RatingTitle;
+                ratingModel.Factor = rating.Factor;
+                ratingModelList.Add(ratingModel);
+            }
+            return ratingModelList;
+        }
 
         public async Task<decimal> GetOccupationRatingFactorByRatingId(int id)
         {
