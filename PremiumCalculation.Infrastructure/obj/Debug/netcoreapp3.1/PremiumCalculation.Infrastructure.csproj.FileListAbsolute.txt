@@ -1,0 +1,4 @@
+D:\Interview\TAL Life Insurance\PremiumCalculation.Infrastructure\bin\Debug\netcoreapp3.1\PremiumCalculation.Domain.dll
+D:\Interview\TAL Life Insurance\PremiumCalculation.Infrastructure\obj\Debug\netcoreapp3.1\PremiumCalculation.Infrastructure.csprojAssemblyReference.cache
+D:\Interview\TAL Life Insurance\PremiumCalculation.Infrastructure\obj\Debug\netcoreapp3.1\PremiumCalculation.Infrastructure.AssemblyInfoInputs.cache
+D:\Interview\TAL Life Insurance\PremiumCalculation.Infrastructure\obj\Debug\netcoreapp3.1\PremiumCalculation.Infrastructure.AssemblyInfo.cs
