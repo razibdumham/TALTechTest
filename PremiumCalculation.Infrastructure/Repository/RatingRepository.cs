@@ -5,9 +5,9 @@ using System.Text;
 
 namespace PremiumCalculation.Infrastructure.Repository
 {
-    public class OccupationRepository : GenericRepository<Occupation>
+    public class RatingRepository : GenericRepository<Rating>, IRatingRepository
     {
-        public OccupationRepository(PremiumCalculationDBContext dBContext) : base(dBContext)
+        public RatingRepository(PremiumCalculationDBContext dBContext) : base(dBContext)
         {
 
         }

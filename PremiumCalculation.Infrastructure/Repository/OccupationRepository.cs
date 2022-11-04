@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PremiumCalculation.Infrastructure.Repository
 {
-    public class OccupationRepository : GenericRepository<Occupation>
+    public class OccupationRepository : GenericRepository<Occupation>, IOccupationRepository
     {
         public OccupationRepository(PremiumCalculationDBContext dBContext) : base(dBContext)
         {
