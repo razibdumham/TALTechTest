@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "PremiumCalculation.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/PremiumCalculation.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PremiumCalculation.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "PremiumCalculation.Domain/1.0.0": {
+      "type": "project",
+      "path": "../PremiumCalculation.Domain/PremiumCalculation.Domain.csproj",
+      "msbuildProject": "../PremiumCalculation.Domain/PremiumCalculation.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "PremiumCalculation.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\razib\\.nuget\\packages\\": {},
@@ -37,7 +56,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Interview\\TAL Life Insurance\\PremiumCalculation.Domain\\PremiumCalculation.Domain.csproj": {
+              "projectPath": "D:\\Interview\\TAL Life Insurance\\PremiumCalculation.Domain\\PremiumCalculation.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
