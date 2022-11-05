@@ -7,7 +7,17 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './calculate-premium.component.html'
 })
 export class CalculatePremiumComponent implements OnInit {
-  public calculatePremium: PremiumCalculatorModel;
+  public calculatePremium: PremiumCalculatorModel = {
+    name: '',
+    age: 0,
+    dateOfBirth: '',
+    sumInsured: 0,
+    ratingId: 0,
+    factor: 0,
+    calculatedPremium: 0,
+    occupations: [],
+    errors: []
+  };
   
   public calculatorForm = this.formBuilder.group({
     name: '',
