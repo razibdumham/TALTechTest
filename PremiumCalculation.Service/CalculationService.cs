@@ -7,8 +7,8 @@ namespace PremiumCalculation.Service
 {
     public class CalculationService : ICalculationService
     {
-        public IUnitOfWork _unitOfWork;
-        public IRatingService _ratingService;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRatingService _ratingService;
 
         public CalculationService(IUnitOfWork unitOfWork, IRatingService ratingService)
         {

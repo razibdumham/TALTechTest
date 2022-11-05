@@ -11,7 +11,7 @@ namespace PremiumCalculation.Service
 {
     public class OccupationService : IOccupationService
     {
-        public IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public OccupationService(IUnitOfWork unitOfWork)
         {

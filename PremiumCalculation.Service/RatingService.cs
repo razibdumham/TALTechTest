@@ -5,7 +5,7 @@ namespace PremiumCalculation.Service
 {
     public class RatingService : IRatingService
     {
-        public IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public RatingService(IUnitOfWork unitOfWork)
         {
