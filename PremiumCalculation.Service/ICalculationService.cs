@@ -1,7 +1,4 @@
-﻿using PremiumCalculation.Domain;
-using PremiumCalculation.Domain.ViewModel;
-using PremiumCalculation.Domain.ViewModel;
-using System.Collections.Generic;
+﻿using PremiumCalculation.Domain.ViewModel;
 using System.Threading.Tasks;
 
 namespace PremiumCalculation.Service

@@ -8,6 +8,5 @@ namespace PremiumCalculation.Service
     public interface IOccupationService
     {
         Task<List<OccupationModel>> GetAll();
-        //Task<decimal> GetOccupationRatingFactorByRatingId(int id);
     }
 }

@@ -40,13 +40,11 @@ namespace PremiumCalculation.Service
                 occupationModel.Id = occupation.Id;
                 occupationModel.OccupationTitle = occupation.OccupationTitle;
                 occupationModel.RatingId = occupation.RatingId;
-                occupationModel.Factor = occupation.Rating.Factor;
                 occupationModelList.Add(occupationModel);
             }
             return occupationModelList;
         }
 
-       
             
     }
 }

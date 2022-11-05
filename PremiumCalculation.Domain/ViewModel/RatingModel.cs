@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PremiumCalculation.Domain.ViewModel
+﻿namespace PremiumCalculation.Domain.ViewModel
 {
     public class RatingModel
     {

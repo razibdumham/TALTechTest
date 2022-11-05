@@ -29,9 +29,7 @@ export class CalculatePremiumComponent implements OnInit {
       this.calculatePremium = result;
       this.cdRf.detectChanges();
     }, error => console.error(error));
-    //this.formdata = new FormGroup({
-    //  name: new FormControl("Razib")
-    //});
+    
   }
   onOccupationChange(event: any) {
     this.calculatePremium.name = this.calculatorForm.get('name').value||'';

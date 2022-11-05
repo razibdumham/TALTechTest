@@ -4,7 +4,6 @@
 
 <p *ngIf="!calculatePremium"><em>Loading...</em></p>
 
-<!--<p *ngIf="calculatePremium"><em>Loaded...</em></p>-->
 
 <div class="alert alert-danger" role="alert" *ngIf="calculatePremium.errors.length>0">
   <ul>
@@ -62,7 +61,7 @@
          *ngIf="!calculatorForm.controls.ratingId.valid">
       You must select Occupation
     </div>
-    <small id="emailHelp" class="form-text text-muted">Select an occupation or click button to calculate yearly premium.</small>
+    <small id="emailHelp" class="form-text alert-success">Select an occupation or click button to calculate yearly premium.</small>
   </div>
   <div class="alert alert-success"
        role="alert"
