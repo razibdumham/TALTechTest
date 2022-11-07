@@ -16,8 +16,11 @@ namespace PremiumCalculation.Domain.ViewModel
         [Required]
         public int Age { get; set; }
         [Required]
+        [MinimumAge(1)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
         public decimal SumInsured { get; set; }
         [Required]
         public decimal CalculatedPremium { get; set; }

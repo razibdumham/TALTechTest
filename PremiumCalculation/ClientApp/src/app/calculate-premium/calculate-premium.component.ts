@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -16,7 +16,9 @@ export class CalculatePremiumComponent implements OnInit {
     factor: 0,
     calculatedPremium: 0,
     occupations: [],
-    errors: []
+    errors: [],
+    dateOfBirthValidationError: '',
+    sumInsuredValidationError:''
   };
   
   public calculatorForm = this.formBuilder.group({
@@ -51,7 +53,16 @@ export class CalculatePremiumComponent implements OnInit {
     this.httpClient.post<any>(this.baseUrl + 'CalculatePremium', this.calculatePremium).subscribe(result => {
       this.calculatePremium = result;
       this.cdRf.detectChanges();
-    }, error => console.error(error));
+    }, (error: HttpErrorResponse) => {
+      if (error.status === 400) {
+        if (error.error.errors['DateOfBirth'] !== undefined) {
+          this.calculatePremium.dateOfBirthValidationError = error.error.errors['DateOfBirth'][0];
+        }
+        if (error.error.errors['SumInsured'] !== undefined) {
+          this.calculatePremium.sumInsuredValidationError = error.error.errors['SumInsured'][0];
+        }
+      }
+    });
   }
   onClickSubmit() {
     this.calculatePremium.name = this.calculatorForm.get('name').value || '';
@@ -63,8 +74,25 @@ export class CalculatePremiumComponent implements OnInit {
     this.httpClient.post<any>(this.baseUrl + 'CalculatePremium', this.calculatePremium).subscribe(result => {
       this.calculatePremium = result;
       this.cdRf.detectChanges();
-    }, error => console.error(error));
+    }, (error: HttpErrorResponse) => {
+        if (error.status === 400) {
+          if (error.error.errors['DateOfBirth'] !== undefined) {
+            this.calculatePremium.dateOfBirthValidationError = error.error.errors['DateOfBirth'][0];
+          }
+          if (error.error.errors['SumInsured'] !== undefined) {
+            this.calculatePremium.sumInsuredValidationError = error.error.errors['SumInsured'][0];
+          }
+          
+        }
+    });
+
+
   }
+}
+
+interface ClientError {
+  code: string;
+  description: string;
 }
 
 interface PremiumCalculatorModel {
@@ -77,4 +105,6 @@ interface PremiumCalculatorModel {
   calculatedPremium: number;
   occupations: [];
   errors: [];
+  dateOfBirthValidationError: string;
+  sumInsuredValidationError: string;
 }

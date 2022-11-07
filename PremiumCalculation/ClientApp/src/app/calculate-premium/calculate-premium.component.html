@@ -40,6 +40,10 @@
          *ngIf="!calculatorForm.controls.dateOfBirth.valid">
       You must enter Date Of Birth
     </div>
+    <div class="alert alert-danger"
+         role="alert" *ngIf="calculatePremium.dateOfBirthValidationError">
+      {{calculatePremium.dateOfBirthValidationError}}
+    </div>
   </div>
   <div class="form-group">
     <label for="SumInsured">Sum Insured</label>
@@ -49,6 +53,11 @@
          *ngIf="!calculatorForm.controls.sumInsured.valid">
       You must enter Sum Insured
     </div>
+    <div class="alert alert-danger"
+         role="alert" *ngIf="calculatePremium.sumInsuredValidationError">
+      {{calculatePremium.sumInsuredValidationError}}
+    </div>
+
   </div>
   <div class="form-group">
     <label for="Occupations">Select Occupation</label>
