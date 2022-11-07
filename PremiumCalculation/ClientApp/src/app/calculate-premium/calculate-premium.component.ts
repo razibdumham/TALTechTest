@@ -55,12 +55,10 @@ export class CalculatePremiumComponent implements OnInit {
       this.cdRf.detectChanges();
     }, (error: HttpErrorResponse) => {
       if (error.status === 400) {
-        if (error.error.errors['DateOfBirth'] !== undefined) {
-          this.calculatePremium.dateOfBirthValidationError = error.error.errors['DateOfBirth'][0];
-        }
-        if (error.error.errors['SumInsured'] !== undefined) {
-          this.calculatePremium.sumInsuredValidationError = error.error.errors['SumInsured'][0];
-        }
+        this.calculatePremium.dateOfBirthValidationError = (error.error.errors['DateOfBirth'] !== undefined) ? error.error.errors['DateOfBirth'][0] : '';
+
+        this.calculatePremium.sumInsuredValidationError = (error.error.errors['SumInsured'] !== undefined) ? error.error.errors['SumInsured'][0] : '';
+
       }
     });
   }
@@ -76,12 +74,10 @@ export class CalculatePremiumComponent implements OnInit {
       this.cdRf.detectChanges();
     }, (error: HttpErrorResponse) => {
         if (error.status === 400) {
-          if (error.error.errors['DateOfBirth'] !== undefined) {
-            this.calculatePremium.dateOfBirthValidationError = error.error.errors['DateOfBirth'][0];
-          }
-          if (error.error.errors['SumInsured'] !== undefined) {
-            this.calculatePremium.sumInsuredValidationError = error.error.errors['SumInsured'][0];
-          }
+          this.calculatePremium.dateOfBirthValidationError = (error.error.errors['DateOfBirth'] !== undefined) ? error.error.errors['DateOfBirth'][0] : '';
+          
+          this.calculatePremium.sumInsuredValidationError = (error.error.errors['SumInsured'] !== undefined) ? error.error.errors['SumInsured'][0] : '';
+          
           
         }
     });
