@@ -86,10 +86,6 @@ export class CalculatePremiumComponent implements OnInit {
   }
 }
 
-interface ClientError {
-  code: string;
-  description: string;
-}
 
 interface PremiumCalculatorModel {
   name: string;
